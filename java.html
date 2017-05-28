@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+<link rel="stylesheet" type="html/css" href="style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+     
+</head>
+<body>
+<div id="container">
+<div id="description">Na szarym polu pojawi się choinka. Składać się będzie z gwiazdek (*)
+ oraz bombek, reprezentowanych przez cyfry od 0 do 9. Cyfry te będą ułożone od 1 (na górze)
+ rosnąco aż do ostatniego wiersza, po czym znów od dołu do góry po prawej stronie choinki.
+ Wpisz liczbę od 1 do 200, odpowiadającą wysokości choinki </div>
+<div id="question">Ile elementów?</div>
+	<input type="number" id="value" min="1" max="200"></input><button id="click"> potwierdź</button>
+	<div id="xmas"></div>
+</div>
+	
+	
+	
+	
+	
+
+<script>
+
+
+
+
+
+$("#click").click(function(){
+
+
+	var numberuser=$('#value').val();
+	var solidNumber=numberuser;
+	numberuser=numberuser*2-1;
+	var everyFourth=1;
+	var howMany=0;
+	var lineBreaker=1;
+	var xmasBall=1;
+	var everyFourthIndentation=3;
+	//sprawdza ile potrzeba wcięć po lewej stronie
+	var extraIndentation=Math.floor(solidNumber/4);
+	var solidExtraIndentation=extraIndentation;
+	var counter=0;
+	//sprawdza jaka bombka ma pojawić się po prawej stronie
+	var rightXmasBall=(solidNumber)*2-1;
+	rightXmasBall=rightXmasBall%10;
+	//zapobiega wyświetalniu bobmki dla czubka choinki
+		start=false;
+	
+
+$('#xmas').html('');
+//wykonuje  pętlę tyle razy ile  chce użytkownik
+	while(howMany<=numberuser)
+	{
+		$('#xmas').html($('#xmas').html()+"  ");
+	
+	//co cztery linie robi wcięcie z choince
+	    if(everyFourth==5)
+	    {
+	    	everyFourth=1;
+	    	howMany-=6;
+	    }
+	    //przypisuje dodatkowe spacje przed drzewem w zależności od jego wysokości
+	for(var k=1; k<=extraIndentation; k++)
+	{  $('#xmas').html($('#xmas').html()+" ");  }
+	counter++;
+	if(counter==4)
+	{
+		counter=0;
+		extraIndentation=solidExtraIndentation-1;
+		solidExtraIndentation=solidExtraIndentation-1;
+	}
+
+//przypisuje 3 spacje dla 1 przebiegu, 2 spacje dla 2 drugiego 
+	//i 1 spację dla trzeciego, po czym powtarza  się dla całej choinki
+	   switch(everyFourthIndentation) {
+	      case 3 :
+	    	 $('#xmas').html($('#xmas').html()+"   ");
+	         break;
+	      case 2 :
+	    	  $('#xmas').html($('#xmas').html()+"  ");
+	         break;
+	      case 1 :
+	    $('#xmas').html($('#xmas').html()+" ");
+	         break;
+	      case 0 :
+	    	  $('#xmas').html($('#xmas').html()+"");
+	        break;
+	   }
+	   everyFourthIndentation--;
+	   if(everyFourthIndentation<0)
+	   {
+		   everyFourthIndentation=3;
+	   }
+// wypisuje "bombki" na brzegu choinki
+	   $('#xmas').html($('#xmas').html()+xmasBall);
+
+
+	    
+	    //wypisuje gwiazdki w zaleznosci od linii
+	for(var i=2; i<=howMany;i++)
+	{
+
+
+		$('#xmas').html($('#xmas').html()+"*");
+
+	}
+	//nie wyswietla bombki dla czubka choinki
+	if(start==false)
+	{
+		start=true;
+	}
+	else
+	{
+		//wyświetla bombkę dla brzegów choinki po prawej stronie
+	$('#xmas').html($('#xmas').html()+rightXmasBall);
+	rightXmasBall--;
+	//jeżeli prawy brzeg dojdzie do 0,to zaczyna się znów od 9
+	if(rightXmasBall<0)
+	{
+		rightXmasBall=9;
+	}
+	}
+	
+	xmasBall++;
+	    everyFourth++;
+    if(xmasBall==10)
+    {
+    	xmasBall=0;
+
+    }
+
+
+    howMany+=2;
+//kończy pętlę po uzyskaniu tylu linii, ile chciał użytkownik
+    lineBreaker++;
+	    if(lineBreaker>solidNumber)
+	    {
+	        break;
+	    }
+$('#xmas').html($('#xmas').html()+"<br />");
+	}
+	
+
+
+}
+);
+
+	
+
+
+
+</script>
+</body>
+</html>
+

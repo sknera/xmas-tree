@@ -1,0 +1,43 @@
+<style>
+body
+{
+    background:  url("cheap_diagonal_fabric.png") repeat fixed center; 
+}
+#xmas
+{
+width:1000px;
+min-height:500px;
+background:slategray;
+white-space:pre-wrap; 
+    font-family: 'Ubuntu Mono', monospace;
+border:2px dotted green;
+}
+
+#value, #click, #xmas, #question,#description
+{
+ margin: auto;
+float:left;
+margin-top:5px;
+    width:50%;
+}
+ #click, #question, #description
+{
+    text-align:center;
+height:40px;
+}
+#container
+{
+  display: flex;
+  justify-content: center;
+   flex-direction: column;
+}
+#description
+{
+margin-bottom:10px;
+background:rgba(54,12,120,0.4);
+}
+#description
+{
+height:60px;
+}
+</style>
